@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import logo from './portrait2.png';
 import './App.css';
-import Auth from 'j-toker'; 
 
-const API_URL = "http://localhost:5000";
 
 class App extends Component {
   constructor() {
@@ -14,10 +12,6 @@ class App extends Component {
       email: "Enter your email here!",
       password: ""
     };
-
-    Auth.configure({
-      apiUrl: `${API_URL}`, 
-    })
 
     this.changeHandler = this.changeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
