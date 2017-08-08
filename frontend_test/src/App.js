@@ -32,6 +32,7 @@ class App extends Component {
       password: this.state.password,
     }).then( user => {
       console.log(user)
+      this.setState({ uid: user.uid })
     });
   };
   checkUserAuth(uid) {
