@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import logo from './portrait2.png';
 import './App.css';
-import Auth from 'j-toker'; 
 
-const API_URL = "http://localhost:5000";
 
 class App extends Component {
   constructor() {
@@ -12,21 +10,20 @@ class App extends Component {
     this.state = {
       uid: null,
       email: "Enter your email here!",
-      password: ""
+      password: "",
+      password_confirmation: "",
     };
-
-    Auth.configure({
-      apiUrl: `${API_URL}`, 
-    })
 
     this.changeHandler = this.changeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
   changeHandler(e) {
     if(e.target.name === "email_address"){
-      this.setState({email: e.target.value})
+      this.setState({email: e.target.value});
     } else if (e.target.name === "password") {
-      this.setState({password: e.target.value})
+      this.setState({password: e.target.value});
+    } else if (e.target.name === "password_confirmation"){
+      this.setState({password_confirmation == e.target.value});
     };
   };
   handleSubmit(e) {
@@ -44,8 +41,20 @@ class App extends Component {
               value={ this.state.email } 
               onChange={ this.changeHandler }/><br/>
             Password: <br/>
-            <input type="password" name="password" value={this.state.password} onChange={this.changeHandler}/><br/>
-            <button type="submit">Submit</button>
+            <input 
+              type="password" 
+              name="password" 
+              value={this.state.password} 
+              onChange={this.changeHandler}/><br/>
+            <input 
+              type="password" 
+              name="password_confirmation" 
+              value={this.state.password_confirmation} 
+              onChange={this.changeHandler}/><br/>
+            <button 
+              type="submit">
+              Submit
+            </button>
         </form>
       )
     } else {
