@@ -46,6 +46,7 @@ class App extends Component {
               name="password" 
               value={this.state.password} 
               onChange={this.changeHandler}/><br/>
+            Password Confirmation: <br/>
             <input 
               type="password" 
               name="password_confirmation" 
