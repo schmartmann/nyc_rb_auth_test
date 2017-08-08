@@ -23,7 +23,7 @@ class App extends Component {
     } else if (e.target.name === "password") {
       this.setState({password: e.target.value});
     } else if (e.target.name === "password_confirmation"){
-      this.setState({password_confirmation == e.target.value});
+      this.setState({password_confirmation:  e.target.value});
     };
   };
   handleSubmit(e) {
