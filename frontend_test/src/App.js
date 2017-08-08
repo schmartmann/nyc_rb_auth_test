@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './portrait2.png';
 import './App.css';
+import Auth from 'j-toker'; 
+
+const API_URL = "http://localhost:5000";
 
 class App extends Component {
   constructor() {
@@ -11,9 +14,13 @@ class App extends Component {
       email: "Enter your email here!",
       password: ""
     };
-    
+
+    Auth.configure({
+      apiUrl: `${API_URL}`, 
+    })
+
     this.changeHandler = this.changeHandler.bind(this);
-    this.submitForm = this.submitForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
   changeHandler(e) {
     if(e.target.name === "email_address"){
@@ -22,18 +29,23 @@ class App extends Component {
       this.setState({password: e.target.value})
     };
   };
-  submitForm() {
-  
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
   };
   checkUserAuth(uid) {
     if (uid === null) {
       return(
-        <form onSubmit={this.checkAuth}>
+        <form onSubmit={ this.handleSubmit }>
             Email Address: <br/>
-            <input type="text" name="email_address" value={this.state.email} onChange={this.changeHandler}/><br/>
+            <input 
+              type="text" 
+              name="email_address" 
+              value={ this.state.email } 
+              onChange={ this.changeHandler }/><br/>
             Password: <br/>
             <input type="password" name="password" value={this.state.password} onChange={this.changeHandler}/><br/>
-            <input type="submit"/>
+            <button type="submit">Submit</button>
         </form>
       )
     } else {
