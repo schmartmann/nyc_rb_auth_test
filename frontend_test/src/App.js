@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './portrait2.png';
 import './App.css';
-
+import Auth from 'j-toker'
 
 class App extends Component {
   constructor() {
@@ -11,8 +11,9 @@ class App extends Component {
       uid: null,
       email: "Enter your email here!",
       password: "",
-      password_confirmation: "",
     };
+
+    Auth.configure({ apiUrl: "http://localhost:5000"})
 
     this.changeHandler = this.changeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,13 +23,16 @@ class App extends Component {
       this.setState({email: e.target.value});
     } else if (e.target.name === "password") {
       this.setState({password: e.target.value});
-    } else if (e.target.name === "password_confirmation"){
-      this.setState({password_confirmation:  e.target.value});
-    };
+    }
   };
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    Auth.emailSignIn({
+      email: this.state.email, 
+      password: this.state.password,
+    }).then( user => {
+      console.log(user)
+    });
   };
   checkUserAuth(uid) {
     if (uid === null) {
@@ -45,12 +49,6 @@ class App extends Component {
               type="password" 
               name="password" 
               value={this.state.password} 
-              onChange={this.changeHandler}/><br/>
-            Password Confirmation: <br/>
-            <input 
-              type="password" 
-              name="password_confirmation" 
-              value={this.state.password_confirmation} 
               onChange={this.changeHandler}/><br/>
             <button 
               type="submit">
