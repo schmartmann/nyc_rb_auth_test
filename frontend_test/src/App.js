@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       uid: null,
       email: "Enter your email here!",
-      password: ""
+      password: "",
+      password_confirmation: "",
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -18,9 +19,11 @@ class App extends Component {
   };
   changeHandler(e) {
     if(e.target.name === "email_address"){
-      this.setState({email: e.target.value})
+      this.setState({email: e.target.value});
     } else if (e.target.name === "password") {
-      this.setState({password: e.target.value})
+      this.setState({password: e.target.value});
+    } else if (e.target.name === "password_confirmation"){
+      this.setState({password_confirmation == e.target.value});
     };
   };
   handleSubmit(e) {
@@ -38,8 +41,20 @@ class App extends Component {
               value={ this.state.email } 
               onChange={ this.changeHandler }/><br/>
             Password: <br/>
-            <input type="password" name="password" value={this.state.password} onChange={this.changeHandler}/><br/>
-            <button type="submit">Submit</button>
+            <input 
+              type="password" 
+              name="password" 
+              value={this.state.password} 
+              onChange={this.changeHandler}/><br/>
+            <input 
+              type="password" 
+              name="password_confirmation" 
+              value={this.state.password_confirmation} 
+              onChange={this.changeHandler}/><br/>
+            <button 
+              type="submit">
+              Submit
+            </button>
         </form>
       )
     } else {
